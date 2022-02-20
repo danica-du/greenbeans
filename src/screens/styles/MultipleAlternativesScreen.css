@@ -1,0 +1,92 @@
+.ma-container {
+    background-color: #F8F9FA;
+    height: 521px;
+    width: 678px;
+}
+
+.full-header {
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06);
+    position: relative;
+    height: 152px;
+    padding: 0 32px;
+    max-width: 678px;
+}
+
+.full-header-content {
+    height: 40px;
+    margin-top: 16px;
+    position: relative;
+    text-align: right;
+    width: 100%;
+}
+
+.full-header-content > span {
+    font-size: 19.5px;
+    font-weight: 600;
+    padding-top: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.ma-content {
+    display: flex;
+    height: 369px;
+    padding: 24px 32px 0 32px;
+}
+
+.currentitem-container {
+    position: relative;
+}
+
+.currentitem-label {
+    color: #3F3F3F;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.altitems-container {
+    margin-left: 60px;
+    width: 100%;
+}
+
+.altitems-label {
+    display: flex;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.small-leaf-container {
+    position: absolute;
+    bottom: 0; 
+}
+
+.altitems-label span {
+    color: #3F3F3F;
+    display: block;
+    margin-left: 22px;
+    font-size: 14px;
+    max-width: 348px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.altitems-slideshow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.right-btn-container {
+    position: absolute;
+    right: 16px;
+    bottom: 190px;
+    z-index: 100;
+}
+
+.right-btn-container:hover {
+    cursor: pointer;
+}

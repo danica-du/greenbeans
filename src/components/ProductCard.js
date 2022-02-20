@@ -18,7 +18,7 @@ function ProductCard(props) {
                 </div>
                 <div className="price-container">
                     <PriceTagLogo />
-                    <span>${"160"}</span>
+                    <span>${props.price}</span>
                 </div>
                 <div className="current-image-container">
                     <img src={props.image}
@@ -35,7 +35,7 @@ function ProductCard(props) {
                     </div>
                     <div className="price-container">
                         <PriceTagLogo />
-                        <span>${"160"}</span>
+                        <span>${props.price}</span>
                     </div>
                     <div className="image-container">
                         <img src={props.image}
