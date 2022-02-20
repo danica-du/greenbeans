@@ -1,3 +1,7 @@
+.slick-track {
+    display: flex;
+}
+
 .ma-container {
     background-color: #F8F9FA;
     height: 521px;
@@ -38,6 +42,9 @@
 
 .currentitem-container {
     position: relative;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
 }
 
 .currentitem-label {
@@ -50,7 +57,13 @@
 
 .altitems-container {
     margin-left: 60px;
-    width: 100%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.slider-wrapper {
+    display: block;
 }
 
 .altitems-label {

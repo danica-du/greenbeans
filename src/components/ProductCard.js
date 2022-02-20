@@ -42,7 +42,8 @@ function ProductCard(props) {
                             alt="product display">
                         </img>
                     </div>
-                    <GeneralButton text={"View Item"} height={"36px"} width={"137px"} handleClick={handleProductClick}/>
+                    <GeneralButton text={"View Item"} height={"36px"} width={"137px"} 
+                                   handleClick={handleProductClick}/>
                 </div>
         )}
         </div>

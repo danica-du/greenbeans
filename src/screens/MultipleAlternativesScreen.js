@@ -3,8 +3,10 @@ import './styles/MultipleAlternativesScreen.css';
 import LogoHeader from '../components/LogoHeader';
 import GeneralButton from '../components/GeneralButton';
 import { useState, useEffect } from 'react';
+import Slider from 'react-slick';
 import axios from "axios";
-
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 import ProductCard from '../components/ProductCard';
 import productimage from './productimage.png';
@@ -17,10 +19,7 @@ function MultipleAlternativesScreen() {
     const [url, setURL] = useState('');
     const [websiteName, setWebsiteName] = useState('');
     const [websiteImage, setWebsiteImage] = useState('');
-    const [price, setPrice] = useState('')
-    const [altURL, setaltURL] = useState('');
-    const [altimageURL, setaltImageURL] = useState(''); 
-    const [altName, setaltName] = useState('');
+    const [price, setPrice] = useState('');
     
 
     async function getWebsiteInfo(productURL) {
@@ -98,6 +97,30 @@ function MultipleAlternativesScreen() {
     // }
     console.log(websiteImage)
     console.log(altItemsList)
+
+    let sliderSettings = {
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        rows: 1,
+        arrows: true,
+    }
+
+    let altItemsToRender;
+    // useEffect(() => {
+        if (altItemsList) {
+            altItemsToRender = altItemsList.map(item => {
+                return (
+                    <ProductCard isCurrentItem={false} name={item.ProductName}
+                    price={item.Price} image={item.PhotoURL} url={item.WebsiteURL}/>
+                )
+            })
+            console.log("boink", altItemsToRender)
+        }
+    // }, [altItemsList])
+
     return (
         <div className="ma-container">
             <FullHeader />
@@ -117,17 +140,33 @@ function MultipleAlternativesScreen() {
                         </div>
                         <span>Items related to {websiteName}</span>
                     </div>
-                    <div className="altitems-slideshow">
-                        <ProductCard isCurrentItem={false} name={altItemsList[0] ? altItemsList[0].ProductName : ""}
-                                     price={altItemsList[0] ? altItemsList[0].Price : ''} image={altItemsList[0] ? altItemsList[0].PhotoURL : ''} url={altItemsList[0] ? altItemsList[0].WebsiteURL : ''}/>
-                        <ProductCard isCurrentItem={false} name={"Arc'teryx Atom LT"}
-                                     price={"160"} image={productimage3} url={"https://arcteryx.com/us/en/shop/mens/atom-lt-hoody"}/>
-                        {/* <Dots /> */}
+                    <div className="slider-wrapper">
+                        <Slider {...sliderSettings}>
+                            {
+                                altItemsList.map(item => {
+                                    return (
+                                        <ProductCard isCurrentItem={false} name={item.ProductName}
+                                        price={item.Price} image={item.PhotoURL} url={item.WebsiteURL}/>
+                                    );
+                                })
+                            }
+                        </Slider>
                     </div>
+
+
+                        {/* <ProductCard isCurrentItem={false} name={altItemsList[0] ? altItemsList[0].ProductName : ""}
+                        price={altItemsList[0] ? altItemsList[0].Price : ''} image={altItemsList[0] ? altItemsList[0].PhotoURL : ''} url={altItemsList[0] ? altItemsList[0].WebsiteURL : ''}/>
+                        <ProductCard isCurrentItem={false} name={"Arc'teryx Atom LT"}
+                        price={"160"} image={productimage3} url={"https://arcteryx.com/us/en/shop/mens/atom-lt-hoody"}/>
+                                                <ProductCard isCurrentItem={false} name={"Arc'teryx Atom LT"}
+                        price={"160"} image={productimage3} url={"https://arcteryx.com/us/en/shop/mens/atom-lt-hoody"}/> */}
+
+                    {/* <div className="altitems-slideshow">
+                    </div> */}
                 </div>
-                <div className="right-btn-container">
+                {/* <div className="right-btn-container">
                     <RightButton />
-                </div>
+                </div> */}
             </div>
         </div>
     );
