@@ -4,3 +4,7 @@
     border-radius: 4px;
     color: #FFFFFF;
 }
+
+.btn:hover {
+    cursor: pointer;
+}

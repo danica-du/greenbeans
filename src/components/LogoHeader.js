@@ -8,9 +8,7 @@ function LogoHeader(props) {
             <div className="brandname-container">
                 {props.isSmall ? <SmallBrandName /> : <BigBrandName />}
             </div>
-            <div onClick={() => {window.close()}}>
-                <CloseButton topPos={props.isSmall ? "16px" : "35px"} rightPos={props.isSmall ? "16px" : "32px"}/>
-            </div>
+            <CloseButton topPos={props.isSmall ? "16px" : "35px"} rightPos={props.isSmall ? "16px" : "32px"}/>
         </div>
 
         
