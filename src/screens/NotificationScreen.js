@@ -5,7 +5,7 @@ import GeneralButton from '../components/GeneralButton.js';
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-function NotificationScreen() {
+function NotificationScreen(props) {
     const [url, setURL] = useState('');
     const [websiteName, setWebsiteName] = useState('');
     const [altURL, setaltURL] = useState('');
@@ -32,13 +32,8 @@ function NotificationScreen() {
         const filteredList = productList.filter(product => product.WebsiteURL === productURL)
         const product = filteredList[0]
         const alternatives = product["AlternativeProducts"]
-        //console.log(alternatives)
         for(const id of alternatives) {
           const alt = await axios.get("https://greenbeans.bubbleapps.io/version-test/api/1.1/obj/AlternativeProduct/" + id)
-          // console.log("asdf")
-          // console.log(alt.data)
-          // console.log(alt.data.response.url)
-          // console.log(alt.data.response.name)
           setaltURL(alt.data.response.WebsiteURL)
           setaltImageURL(alt.data.response.PhotoURL)
           setaltName(alt.data.response.ProductName)
@@ -68,6 +63,10 @@ function NotificationScreen() {
         getAlternatives(url)
       }, [url]) 
 
+      function handleClick() {
+        console.log("hiawfiwifiaw")
+        props.onViewMoreChange(true);
+      }
     return (
         <div className="sa-container">
             <div className="logo-header">
@@ -90,7 +89,7 @@ function NotificationScreen() {
                         <div>{altName}</div>
                     </div>
                     <div className='button'>
-                        <GeneralButton text={"View More Items"} height={"36px"} width={"141px"}/>
+                        <GeneralButton text={"View More Items"} height={"36px"} width={"141px"} handleClick={() => {console.log("hiii"); props.onViewMoreChange(true);}}/>
                     </div>
                 </div>
             </div>

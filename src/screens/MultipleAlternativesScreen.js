@@ -48,14 +48,6 @@ function MultipleAlternativesScreen() {
         const tempList = []
         for(const id of alternatives) {
           const alt = await axios.get("https://greenbeans.bubbleapps.io/version-test/api/1.1/obj/AlternativeProduct/" + id)
-          // console.log("asdf")
-          // console.log(alt.data)
-          // console.log(alt.data.response.url)
-          // console.log(alt.data.response.name)
-        //   setaltURL(alt.data.response.WebsiteURL)
-        //   setaltImageURL(alt.data.response.PhotoURL)
-        //   setaltName(alt.data.response.ProductName)
-        //   break
           tempList.push(alt.data.response)
         }
         setAltItemsList(tempList)
@@ -173,12 +165,16 @@ function MultipleAlternativesScreen() {
 }
 
 function FullHeader() {
+    function handleClick() {
+        window.open("https://www.figma.com/file/DDvIYSPmZZGG0jEQU6n5gl/greenbeans-Criteria?node-id=2%3A2", "_blank")
+    }
+
     return (
         <div className="full-header">
             <LogoHeader isSmall={false}/>
             <div className="full-header-content">
                 <span>Your Sustainable Alternatives</span>
-                <GeneralButton text={"How we pick our products"} height={"40px"} width={"184px"}/>
+                <GeneralButton text={"How we pick our products"} height={"40px"} width={"184px"} handleClick={() => handleClick()} />
             </div>
         </div>
     );

@@ -42,7 +42,6 @@
 
 .currentitem-container {
     position: relative;
-    width: 40%;
     display: flex;
     flex-direction: column;
 }

@@ -13,6 +13,7 @@ function App() {
   const [isProduct, setisProduct] = useState(false);
   const [isAlternative, setisAlternative] = useState(false);
   const [page, setPage] = useState(<NotProductScreen/>);
+  const [viewMore, setViewMore] = useState(false);
 
   async function checkProduct(productURL) {
     const response = await axios.get("https://greenbeans.bubbleapps.io/version-test/api/1.1/obj/Product")
@@ -32,9 +33,15 @@ function App() {
     }
   }
 
+  useEffect(()=> {
+    if (viewMore) {
+      setPage(<MultipleAlternativesScreen/>)
+    }
+  },[viewMore])
+  
   async function changeScreen() {
     if(isProduct) {
-      setPage(<NotificationScreen/>)
+      setPage(<NotificationScreen onViewMoreChange={setViewMore}/>)
     }else if(isAlternative) {
       setPage(<PassedCriteriaScreen/>)
     }else {
@@ -73,23 +80,6 @@ function App() {
     <div>
       {page}
     </div>
-
-    // <div className="App">
-    //   <header className="App-header">
-    //     {/* <img src={logo} className="App-logo" alt="logo" /> */}
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
   );
 }
 
