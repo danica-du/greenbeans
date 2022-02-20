@@ -1,11 +1,11 @@
 /*global chrome*/
-import './styles/SmallAlternative.css';
+import './styles/NotificationScreen.css';
 import LogoHeader from '../components/LogoHeader.js'
 import GeneralButton from '../components/GeneralButton.js';
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-function SmallAlternativeScreen() {
+function NotificationScreen() {
     const [url, setURL] = useState('');
     const [websiteName, setWebsiteName] = useState('');
     const [altURL, setaltURL] = useState('');
@@ -107,4 +107,4 @@ function LeafLogo() {
     );
 }
 
-export default SmallAlternativeScreen;
+export default NotificationScreen;
