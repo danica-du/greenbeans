@@ -1,5 +1,21 @@
 .pc-container {
     background-color: white;
     height: 139px;
+    padding-left: 30px;
     width: 392px;
+}
+
+.pc-maincontent {
+    display: flex;
+    margin-top: 24px;
+}
+
+.pc-text {
+    margin-left: 32px;
+}
+
+.pc-text div:first-child {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 1px;
 }

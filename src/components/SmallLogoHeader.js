@@ -1,4 +1,5 @@
 import './styles/SmallLogoHeader.css';
+import CloseButton from './CloseButton';
 
 function SmallLogoHeader() {
     return (
@@ -6,6 +7,9 @@ function SmallLogoHeader() {
             <Logo />
             <div className="brandname-container">
                 <BrandName />
+            </div>
+            <div onClick={() => {window.close()}}>
+                <CloseButton topPos={"16px"} rightPos={"16px"}/>
             </div>
         </div>
     );
