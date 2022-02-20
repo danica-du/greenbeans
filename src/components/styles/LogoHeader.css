@@ -1,0 +1,19 @@
+.logoheader-container {
+    display: flex;
+    padding-top: 24px;
+}
+
+.brandname-container {
+    margin-left: 24px;
+    padding-top: 7px;
+}
+
+.big-logoheader-container {
+    display: flex;
+    padding-top: 32px;
+}
+
+.big-brandname-container {
+    margin-left: 28px;
+    padding-top: 7px;
+}

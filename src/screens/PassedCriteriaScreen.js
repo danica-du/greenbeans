@@ -1,10 +1,10 @@
-import './styles/PassedCriteria.css';
-import SmallLogoHeader from '../components/SmallLogoHeader';
+import './styles/PassedCriteriaScreen.css';
+import LogoHeader from '../components/LogoHeader';
 
 function PassedCriteriaScreen() {
     return (
         <div className="pc-container">
-            <SmallLogoHeader />
+            <LogoHeader isSmall={true} />
             <div className="pc-maincontent">
                 <BigLeaf />
                 <div className="pc-text">
