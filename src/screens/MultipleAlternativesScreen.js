@@ -1,7 +1,10 @@
+/*global chrome*/
 import './styles/MultipleAlternativesScreen.css';
 import LogoHeader from '../components/LogoHeader';
 import GeneralButton from '../components/GeneralButton';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from "axios";
+
 
 import ProductCard from '../components/ProductCard';
 import productimage from './productimage.png';
@@ -11,12 +14,90 @@ import productimage3 from './productimage3.png';
 function MultipleAlternativesScreen() {
     const [altItemsList, setAltItemsList] = useState([]);
 
-    const currentItemName = "PrimaLoft Lightweight Hooded Puffer"
+    const [url, setURL] = useState('');
+    const [websiteName, setWebsiteName] = useState('');
+    const [websiteImage, setWebsiteImage] = useState('');
+    const [price, setPrice] = useState('')
+    const [altURL, setaltURL] = useState('');
+    const [altimageURL, setaltImageURL] = useState(''); 
+    const [altName, setaltName] = useState('');
+    
+
+    async function getWebsiteInfo(productURL) {
+        console.log("hi")
+        console.log(productURL)
+        const response = await axios.get("https://greenbeans.bubbleapps.io/version-test/api/1.1/obj/Product")
+        const productList = response.data.response.results
+        const filteredList = productList.filter(product => product.WebsiteURL === productURL)
+        if(filteredList.length > 0) {
+          const product = filteredList[0]
+          setWebsiteName(product.ProductName)
+        }else{
+          setWebsiteName("No website found")
+        }
+    }
+    
+    async function getAlternatives(productURL){
+        const response = await axios.get("https://greenbeans.bubbleapps.io/version-test/api/1.1/obj/Product")
+        const productList = response.data.response.results
+        const filteredList = productList.filter(product => product.WebsiteURL === productURL)
+        const product = filteredList[0]
+        const alternatives = product["AlternativeProducts"]
+        setWebsiteImage(product["PhotoURL"])
+        setPrice(product["Price"])
+        //console.log(alternatives)
+        const tempList = []
+        for(const id of alternatives) {
+          const alt = await axios.get("https://greenbeans.bubbleapps.io/version-test/api/1.1/obj/AlternativeProduct/" + id)
+          // console.log("asdf")
+          // console.log(alt.data)
+          // console.log(alt.data.response.url)
+          // console.log(alt.data.response.name)
+        //   setaltURL(alt.data.response.WebsiteURL)
+        //   setaltImageURL(alt.data.response.PhotoURL)
+        //   setaltName(alt.data.response.ProductName)
+        //   break
+          tempList.push(alt.data.response)
+        }
+        setAltItemsList(tempList)
+    }
+
+
+    useEffect(() => {
+        const startingInfo = async() => { await chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+          setURL(tabs[0].url);
+          // setWebsiteName(url)
+          //console.log(tabs[0].url)
+        })}
+        startingInfo();
+    
+    }, [])
+
+    useEffect(() => {
+        if(url === '') {
+            return
+        }
+        console.log("here")
+        console.log(url)
+        getWebsiteInfo(url)
+    }, [url])
+
+    useEffect(() => {
+        if(url === '') {
+            return
+        }
+        getAlternatives(url)
+    }, [url])
+
+
+
+    // const currentItemName = "PrimaLoft Lightweight Hooded Puffer"
     // const currentItem={
     //     name: "fwee",
     //     price: 160,
     // }
-
+    console.log(websiteImage)
+    console.log(altItemsList)
     return (
         <div className="ma-container">
             <FullHeader />
@@ -25,8 +106,8 @@ function MultipleAlternativesScreen() {
                     <div className="currentitem-label">
                         CURRENT ITEM
                     </div>
-                    <ProductCard isCurrentItem={true} name={currentItemName}
-                                price={"160"} image={productimage}/>
+                    <ProductCard isCurrentItem={true} name={websiteName}
+                                price={price} image={websiteImage}/>
                 </div>
 
                 <div className="altitems-container">
@@ -34,11 +115,11 @@ function MultipleAlternativesScreen() {
                         <div className="small-leaf-container">
                             <SmallLeaf />
                         </div>
-                        <span>Items related to {currentItemName}</span>
+                        <span>Items related to {websiteName}</span>
                     </div>
                     <div className="altitems-slideshow">
-                        <ProductCard isCurrentItem={false} name={"Patagonia Nano PuffPatagonia Nano Puff"}
-                                     price={"160"} image={productimage2} url={"https://www.patagonia.com/product/mens-nano-puff-jacket/84212.html"}/>
+                        <ProductCard isCurrentItem={false} name={altItemsList[0] ? altItemsList[0].ProductName : ""}
+                                     price={altItemsList[0] ? altItemsList[0].Price : ''} image={altItemsList[0] ? altItemsList[0].PhotoURL : ''} url={altItemsList[0] ? altItemsList[0].WebsiteURL : ''}/>
                         <ProductCard isCurrentItem={false} name={"Arc'teryx Atom LT"}
                                      price={"160"} image={productimage3} url={"https://arcteryx.com/us/en/shop/mens/atom-lt-hoody"}/>
                         {/* <Dots /> */}
