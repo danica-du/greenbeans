@@ -1,9 +1,9 @@
-// import './styles/CloseButton.css';
+import './styles/CloseButton.css';
 import { useState } from 'react';
 
 function CloseButton(props) {
     return (
-        <div style={{position: "absolute", top: props.topPos, right: props.rightPos}}>
+        <div className="close-btn" style={{top: props.topPos, right: props.rightPos}}>
             <CloseIcon />
         </div>
     );

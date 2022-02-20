@@ -1,0 +1,7 @@
+.close-btn {
+    position: absolute;
+}
+
+.close-btn:hover {
+    cursor: pointer;
+}
