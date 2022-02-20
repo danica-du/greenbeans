@@ -1,0 +1,37 @@
+.leafheader-container {
+    display: flex;
+    padding-top: 26px;
+    padding-left: 30px;
+}
+
+.sustainable-title {
+    position: absolute;
+    width: 223px;
+    height: 15px;
+    left: 1070px;
+    top: 157px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.sa-container {
+    height: 139px;
+    padding-left: 30px;
+    width: 392px;
+}
+
+.sa-maincontent {
+    display: flex;
+    margin-top: 24px;
+}
+
+.sa-text {
+    margin-left: 32px;
+}
+
+.sa-text div:first-child {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 1px;
+}

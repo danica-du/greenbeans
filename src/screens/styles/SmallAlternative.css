@@ -1,0 +1,60 @@
+.logo-header {
+    margin-left: 32px;
+}
+
+.sa-container {
+    background-color: white;
+    height: 236px;
+    width: 408px;
+}
+
+.leaf-block {
+    display: flex;
+    margin-left: 32px;
+    margin-top: 22px;
+}
+
+.leaf-text {
+    margin-left: 24px;
+}
+
+.sustainable-text {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.sa-imgcontainer {
+    height: 96px;
+    width: 96px;
+}
+.sa-imgcontainer img {
+    height: 100%;
+    width: 100%;
+}
+
+.product-container {
+    display: flex;
+    margin-left: 32px;
+    margin-top: 20px;
+}
+
+.text-and-button {
+    margin-left: 24px;
+    height: 36px;
+    width: 141px;
+}
+
+.product-text {
+    margin-top: 10px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+}
+.button {
+    margin-top: 12px;
+    color: #4CAF50;
+    height: 36;
+    width: 141;
+}
+
